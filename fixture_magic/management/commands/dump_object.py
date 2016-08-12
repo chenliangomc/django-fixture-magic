@@ -89,11 +89,11 @@ class Command(BaseCommand):
 
         add_to_serialize_list(objs)
         serialize_fully()
-        self.stdout.write(serialize('json', [o for o in serialize_me if o is not None],
+        output = serialize('json', [o for o in serialize_me if o is not None],
                                     indent=4,
                                     use_natural_foreign_keys=options.get('natural', False),
-                                    use_natural_primary_keys=options.get('natural', False)))
-
+                                    use_natural_primary_keys=options.get('natural', False))
+        self.stdout.write(output)
         # Clear the list. Useful for when calling multiple dump_object commands with a single execution of django
         del serialize_me[:]
         seen.clear()
