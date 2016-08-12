@@ -17,4 +17,4 @@ class Command(BaseCommand):
     def handle(self, fixture, *models, **options):
         output = reorder_json(json.loads(open(fixture).read()), models)
 
-        print(json.dumps(output, indent=4))
+        self.stdout.write(json.dumps(output, indent=4))
